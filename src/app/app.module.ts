@@ -7,7 +7,9 @@ import { HomescreenComponent } from './homescreen/homescreen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //angular material imports
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTableModule, MatTable} from '@angular/material/table'
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+    MatSidenavModule,
+    MatTableModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

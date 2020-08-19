@@ -16,10 +16,12 @@ import { AngularFireModule } from '@angular/fire';
 
 //import environment variables
 import { environment } from '../environments/environment';
+import { SigninComponent } from './auth/signin/signin.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomescreenComponent
+    HomescreenComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

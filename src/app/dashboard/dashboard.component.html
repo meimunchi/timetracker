@@ -2,7 +2,7 @@
 <mat-sidenav-container class="example-container" >
     <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
     <mat-sidenav-content class="main-content">
-        
+        <button mat-buttom (click)="logout()">Logout</button>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.

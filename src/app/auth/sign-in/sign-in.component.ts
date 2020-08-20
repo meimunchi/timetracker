@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
-
+import {auth} from 'firebase/app';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -21,5 +21,15 @@ export class SignInComponent implements OnInit {
         console.log(err.code);
         console.log(err.message);
       })
+  }
+
+  loginWithGoogle() :void {
+    let provider = new auth.GoogleAuthProvider();
+    this.auth.signInWithRedirect(provider).then((result)=>{
+      console.log(result);
+    }).catch((err)=>{
+      console.log(err);
+    })
+    
   }
 }

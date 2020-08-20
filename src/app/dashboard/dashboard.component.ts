@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
-
+import {auth} from 'firebase/app'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 })
 export class DashboardComponent implements OnInit {
 
-
+  user : any;
   displayedColumns: string[] = ['dayTimes','Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday'];
 
   constructor(public auth: AngularFireAuth) { }
@@ -24,6 +24,10 @@ export class DashboardComponent implements OnInit {
   ];
  
   ngOnInit(): void {
+    this.user = auth().currentUser;
+    this.user.providerData.forEach(element => {
+      console.log(element);
+    });
   }
   logout():void{
     console.log("logout");

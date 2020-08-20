@@ -17,7 +17,8 @@ import { environment } from '../environments/environment';
 
 import { SignInComponent } from './auth/sign-in/sign-in.component'
 import { FormsModule } from '@angular/forms';
-import { MainDisplayComponent } from './main-display/main-display.component'
+import { MainDisplayComponent } from './main-display/main-display.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component'
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MainDisplayComponent } from './main-display/main-display.component'
     AppComponent,
     DashboardComponent,
     MainDisplayComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -3,15 +3,15 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'app-homescreen',
-  templateUrl: './homescreen.component.html',
-  styleUrls: ['./homescreen.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class HomescreenComponent implements OnInit {
-  
+export class DashboardComponent implements OnInit {
+
 
   displayedColumns: string[] = ['dayTimes','Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday'];
- 
+
   constructor() { }
   dataSource=[
     {time:"7:00",sun:0,mon:0,tue:0,wed:0,thur:0,fri:0,sat:0},
@@ -23,7 +23,7 @@ export class HomescreenComponent implements OnInit {
     {time:"7:00",sun:0,mon:0,tue:0,wed:0,thur:0,fri:0,sat:0},
   ];
  /* dataSource = [
-    
+
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},

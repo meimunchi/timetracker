@@ -3,25 +3,33 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomescreenComponent } from './homescreen/homescreen.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //angular material imports
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTableModule, MatTable} from '@angular/material/table'
-import {MatButtonModule} from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table'
+import { MatButtonModule } from '@angular/material/button';
 
 //firebase imports
 import { AngularFireModule } from '@angular/fire';
 
 //import environment variables
 import { environment } from '../environments/environment';
-import { SigninComponent } from './auth/signin/signin.component';
+
+import { SignInComponent } from './auth/sign-in/sign-in.component'
+import { FormsModule } from '@angular/forms';
+import { MainDisplayComponent } from './main-display/main-display.component'
+import { MatCardModule } from '@angular/material/card'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomescreenComponent,
-    SigninComponent
+    DashboardComponent,
+    MainDisplayComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +38,11 @@ import { SigninComponent } from './auth/signin/signin.component';
     MatSidenavModule,
     MatTableModule,
     MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "timetracker"
+  "defaultProject": "timetracker",
+  "cli": {
+    "analytics": "c1fd8ce9-8a54-4ea5-8ae3-0cd2a32e6fc1"
+  }
 }

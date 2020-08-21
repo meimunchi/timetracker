@@ -20,7 +20,7 @@
           </tr>
           <tr>
             <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password-valid" type="password" name="password" required>
+              <input matInput placeholder="Verify Password" [(ngModel)]="verifyPassword" type="password" name="password" required>
             </mat-form-field></td>
           </tr>
         
@@ -29,8 +29,8 @@
         <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="login2()" color="primary">Login</button>
-        <button mat-raised-button (click)="loginWithGoogle()" color="primary">Login with Google</button>
+        <button mat-raised-button (click)="createAccount()" color="primary">Create Account</button>
+        <a routerLink='/signin'>Go back</a>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -2,6 +2,7 @@ image: node:12.13.0-alpine
 
 before_script:
   - npm i -g firebase-tools
+  - npm i -g @angular/cli
 
 deploy-firestore:
   stage: deploy

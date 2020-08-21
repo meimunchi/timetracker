@@ -14,20 +14,14 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  login2(){
+  login(){
     this.auth.signInWithEmailAndPassword(this.email,this.password)
       .catch((err)=>{
         console.log(err.code);
         console.log(err.message);
       });
   }
-  login() : void {
-    this.auth.createUserWithEmailAndPassword(this.email, this.password)
-      .catch((err) => {
-        console.log(err.code);
-        console.log(err.message);
-      })
-  }
+  
 
   loginWithGoogle() :void {
     let provider = new auth.GoogleAuthProvider();

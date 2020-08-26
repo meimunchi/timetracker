@@ -15,13 +15,15 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
   login(){
-    this.auth.signInWithEmailAndPassword(this.email,this.password)
+    this.auth.signInWithEmailAndPassword(this.email, this.password)
       .catch((err)=>{
         console.log(err.code);
         console.log(err.message);
       });
+
+    console.log('Hello')
   }
-  
+
 
   loginWithGoogle() :void {
     let provider = new auth.GoogleAuthProvider();
@@ -30,6 +32,6 @@ export class SignInComponent implements OnInit {
     }).catch((err)=>{
       console.log(err);
     })
-    
+
   }
 }

@@ -6,13 +6,16 @@ import { AngularFireAuth } from '@angular/fire/auth'
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   verifyPassword: string;
+
   constructor(private auth : AngularFireAuth) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
   createAccount(){
     this.auth.createUserWithEmailAndPassword(this.email, this.password)
       .catch((err) => {

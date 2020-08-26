@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 //angular material imports : if you import anything from material, put it in ./core/material.module.ts :)
-import {CustomMaterialModule} from './core/material.module'
+import { CustomMaterialModule } from './core/material.module'
 //firebase imports
 import { AngularFireModule } from '@angular/fire';
 
@@ -19,7 +19,6 @@ import { SignInComponent } from './auth/sign-in/sign-in.component'
 import { FormsModule } from '@angular/forms';
 import { MainDisplayComponent } from './main-display/main-display.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component'
-
 
 @NgModule({
   declarations: [

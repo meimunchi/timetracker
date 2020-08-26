@@ -1,37 +1,43 @@
-<div class="signup-flow">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Create New Account</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form class="example-form">
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-            <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-            </mat-form-field></td>
-          </tr>
-          <tr>
-            <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Verify Password" [(ngModel)]="verifyPassword" type="password" name="password" required>
-            </mat-form-field></td>
-          </tr>
-        
-        </table>
-        </form>
-        <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="createAccount()" color="primary">Create Account</button>
-        <a routerLink='/signin'>Go back</a>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  
+<div class="sign-up-flow">
+  <h1>Create account</h1>
+  <form (ngSubmit)="createAccount()">
+<!--    TODO: Can change colors in the future by adding a theme object for Material Design-->
+<!--    TODO: Can change font if want as well-->
+    <div class="input-container">
+      <mat-icon>person</mat-icon>
+      <label>
+        <input placeholder="First Name" [(ngModel)]="firstName" name="firstName" required>
+      </label>
+    </div>
+    <div class="input-container">
+      <mat-icon>person</mat-icon>
+      <label>
+        <input placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required>
+      </label>
+    </div>
+    <div class="input-container">
+      <mat-icon>mail</mat-icon>
+      <label>
+        <input placeholder="Email Address" [(ngModel)]="email" name="email" required>
+      </label>
+    </div>
+    <div class="input-container">
+      <mat-icon>lock</mat-icon>
+      <label>
+        <input placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+      </label>
+    </div>
+    <div class="input-container">
+      <mat-icon>lock</mat-icon>
+      <label>
+        <input placeholder="Verify Password" [(ngModel)]="verifyPassword" type="password" name="verify-password" required>
+      </label>
+    </div>
+    <button (click)="createAccount()">
+      Create Account
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </form>
+    <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->
+  <p>Already have an account? <a routerLink='/signin'>Sign In</a></p>
+</div>

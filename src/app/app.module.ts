@@ -15,18 +15,18 @@ import { AngularFireModule } from '@angular/fire';
 //import environment variables
 import { environment } from '../environments/environment';
 
-import { SignInComponent } from './auth/sign-in/sign-in.component'
+import { SignInComponent } from './landing/sign-in/sign-in.component'
 import { FormsModule } from '@angular/forms';
-import { MainDisplayComponent } from './main-display/main-display.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component'
+import { SignUpComponent } from './landing/sign-up/sign-up.component';
+import { LandingComponent } from './landing/landing.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    MainDisplayComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -12,7 +13,10 @@ export class SignUpComponent implements OnInit {
   password: string;
   verifyPassword: string;
 
-  constructor(private auth : AngularFireAuth) { }
+  constructor(
+    private auth : AngularFireAuth,
+    private router: Router
+  ) { }
 
   ngOnInit(): void { }
 
@@ -22,5 +26,7 @@ export class SignUpComponent implements OnInit {
         console.log(err.code);
         console.log(err.message);
       })
+
+    this.router.navigate(['dashboard']);
   }
 }

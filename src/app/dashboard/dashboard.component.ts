@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import {auth} from 'firebase/app'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,10 @@ export class DashboardComponent implements OnInit {
   user : any;
   displayedColumns: string[] = ['dayTimes','Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday','Saturday'];
 
-  constructor(public auth: AngularFireAuth) { }
+  constructor(
+    public auth: AngularFireAuth,
+    private router: Router
+  ) { }
   dataSource=[
     {time:"7:00",sun:0,mon:0,tue:0,wed:0,thur:0,fri:0,sat:0},
     {time:"7:00",sun:0,mon:0,tue:0,wed:0,thur:0,fri:0,sat:0},
@@ -22,7 +26,7 @@ export class DashboardComponent implements OnInit {
     {time:"7:00",sun:0,mon:0,tue:0,wed:0,thur:0,fri:0,sat:0},
     {time:"7:00",sun:0,mon:0,tue:0,wed:0,thur:0,fri:0,sat:0},
   ];
- 
+
   ngOnInit(): void {
     this.user = auth().currentUser;
     this.user.providerData.forEach(element => {
@@ -30,8 +34,8 @@ export class DashboardComponent implements OnInit {
     });
   }
   logout():void{
-    console.log("logout");
+    // console.log("logout");
     this.auth.signOut();
-    
+    this.router.navigate(['signin']);
   }
 }

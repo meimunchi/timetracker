@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { LandingComponent } from './landing/landing.component'
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 
-// TODO: Maybe add a message that signed up user
+// TODO: Maybe add a message that user has been logged out
 const redirectUnauthorizedToSignIn = () => redirectUnauthorizedTo(['signin'])
 
 const routes: Routes = [

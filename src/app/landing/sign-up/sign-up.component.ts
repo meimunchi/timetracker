@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
 
   // Depending on what you want the flow to be, we can change
   // TODO: Account for error handling
-  createAccount(){
+  createAccount() {
     from(this.auth.createUserWithEmailAndPassword(this.email, this.password))
       .subscribe((user) => { this.router.navigate(['dashboard']); },
         (err) => { console.log(err); });

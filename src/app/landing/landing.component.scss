@@ -1,38 +1,96 @@
+div.landing-wrap {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 
-.landing-wrap{
-    display: flex;
-    justify-content: flex-end;
-    
+  div.landing-container {
+    display: grid;
+    grid-template-columns: minmax(0, 560px) max-content;
+    grid-template-rows: repeat(3, max-content) min-content;
+    grid-template-areas:
+      "logo auth"
+      "title auth"
+      "phrase auth"
+      "desc auth";
+    grid-column-gap: 42px;
+    grid-row-gap: 16px;
+    text-align: center;
+
+    div.logo-container {
+      display: flex;
+      justify-content: center;
+      padding: 28px 0;
+
+      img {
+        width: 100px;
+        grid-area: logo;
+      }
+    }
+
+    h1 {
+      grid-area: title;
+      font-size: 56px;
+      margin: 0;
+      color: #FFFFFF;
+
+      span {
+        color: #73BCFF;
+      }
+    }
+
+    h3 {
+      grid-area: phrase;
+      font-size: 30px;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    p {
+      grid-area: desc;
+      font-size: 24px;
+      margin: 16px auto;
+      color: #FFFFFF;
+    }
+
+    div.auth-container {
+      grid-area: auth;
+    }
+  }
 }
-.landing{
-    background-color: #292828;
-    position: fixed;
-    width:90%;
-    height:100%;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    
-    div.sign-in-sign-up{
-        padding: 8%;
-    }
 
-    div.info{
-        color:white;
-        padding-top:8%;
-        padding-left:2%;
-        display: flex;
-        flex-direction: column;
-        img{
-            height:240px;
-            width:240px;
-        }
-    }
-    div.sign-up-flow{
+@media all and (max-width: 1100px) {
+  div.landing-wrap {
+    height: auto;
 
+    div.landing-container {
+      display: grid;
+      grid-template-columns: max-content;
+      grid-template-rows: repeat(4, max-content);
+      grid-template-areas: unset;
+
+      div.logo-container {
+        grid-area: unset;
+        padding-top: 34px;
+        padding-bottom: 16px;
+      }
+
+      h1 {
+        grid-area: unset;
+      }
+
+      h3 {
+        grid-area: unset;
+      }
+
+      p {
+        display: none;
+      }
+
+      div.auth-container {
+        grid-area: unset;
+        margin-top: 24px;
+      }
     }
-   
-}
-img {
-  width: 100px;
+  }
 }

@@ -19,6 +19,7 @@ import { SignInComponent } from './landing/sign-in/sign-in.component'
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './landing/sign-up/sign-up.component';
 import { LandingComponent } from './landing/landing.component'
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LandingComponent } from './landing/landing.component'
     FormsModule,
     CustomMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

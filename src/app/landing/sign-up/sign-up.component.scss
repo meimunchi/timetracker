@@ -1,4 +1,4 @@
-div.sign-up-flow {
+div.auth-flow {
   width: 420px;
   background: #FFFFFF;
   border: 2px solid #73BCFF;
@@ -11,6 +11,21 @@ div.sign-up-flow {
     margin: 0;
     color: #73BCFF;
     font-size: 30px;
+  }
+
+  p {
+    text-align: center;
+    margin: 12px;
+    font-size: 16px;
+
+    a {
+      color: #73BCFF;
+
+      &:hover {
+        cursor: pointer;
+        color: #5fa0f6;
+      }
+    }
   }
 
   form {
@@ -49,32 +64,22 @@ div.sign-up-flow {
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      width: 180px;
+      width: 100%;
 
       border: none;
       background: #73BCFF;
-      padding: 12px;
+      padding: 12px 6px 12px 12px;
       color: #FFFFFF;
       border-radius: 18px;
       font-size: 18px;
 
+      img {
+        width: 30px;
+      }
+
       &:hover {
         cursor: pointer;
         background: #5fa0f6;
-      }
-    }
-  }
-
-  p {
-    text-align: center;
-    margin: 12px;
-    font-size: 16px;
-
-    a {
-      color: #73BCFF;
-
-      &:hover {
-        color: #5fa0f6;
       }
     }
   }

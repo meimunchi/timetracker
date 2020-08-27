@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router'
+import { from } from 'rxjs'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -20,13 +21,11 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  // Depending on what you want the flow to be, we can change
+  // TODO: Account for error handling
   createAccount(){
-    this.auth.createUserWithEmailAndPassword(this.email, this.password)
-      .catch((err) => {
-        console.log(err.code);
-        console.log(err.message);
-      })
-
-    this.router.navigate(['dashboard']);
+    from(this.auth.createUserWithEmailAndPassword(this.email, this.password))
+      .subscribe((user) => { this.router.navigate(['dashboard']); },
+        (err) => { console.log(err); });
   }
 }

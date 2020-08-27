@@ -1,41 +1,57 @@
-<div class="sign-up-flow">
+<div class="auth-flow">
   <h1>Create account</h1>
   <form (ngSubmit)="createAccount()">
-<!--    TODO: Can change colors in the future by adding a theme object for Material Design-->
-<!--    TODO: Can change font if want as well-->
     <div class="input-container">
-      <mat-icon>person</mat-icon>
+      <img
+        src="assets/icons/person-24px.svg"
+        alt="Chevron Right Icon"
+      >
       <label>
         <input placeholder="First Name" [(ngModel)]="firstName" name="firstName" required>
       </label>
     </div>
     <div class="input-container">
-      <mat-icon>person</mat-icon>
+      <img
+        src="assets/icons/person-24px.svg"
+        alt="Chevron Right Icon"
+      >
       <label>
         <input placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required>
       </label>
     </div>
     <div class="input-container">
-      <mat-icon>mail</mat-icon>
+      <img
+        src="assets/icons/mail-24px.svg"
+        alt="Mail Icon"
+      >
       <label>
         <input placeholder="Email Address" [(ngModel)]="email" name="email" required>
       </label>
     </div>
     <div class="input-container">
-      <mat-icon>lock</mat-icon>
+      <img
+        src="assets/icons/lock-24px.svg"
+        alt="Lock Icon"
+      >
       <label>
         <input placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
       </label>
     </div>
     <div class="input-container">
-      <mat-icon>lock</mat-icon>
+      <img
+        src="assets/icons/lock-24px.svg"
+        alt="Lock Icon"
+      >
       <label>
-        <input placeholder="Verify Password" [(ngModel)]="verifyPassword" type="password" name="verify-password" required>
+        <input placeholder="Verify Password" [(ngModel)]="verifyPassword" type="password" name="verifyPassword" required>
       </label>
     </div>
     <button (click)="createAccount()">
       Create Account
-      <mat-icon>chevron_right</mat-icon>
+      <img
+        src="assets/icons/chevron_right-52px.svg"
+        alt="Chevron Right Icon"
+      >
     </button>
   </form>
     <!--<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>-->

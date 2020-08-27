@@ -51,6 +51,7 @@ div.landing-wrap {
       font-size: 24px;
       margin: 16px auto;
       color: #FFFFFF;
+      line-height: 28px;
     }
 
     div.auth-container {
@@ -62,6 +63,7 @@ div.landing-wrap {
 @media all and (max-width: 1100px) {
   div.landing-wrap {
     height: auto;
+    overflow: auto;
 
     div.landing-container {
       display: grid;
@@ -89,7 +91,7 @@ div.landing-wrap {
 
       div.auth-container {
         grid-area: unset;
-        margin-top: 24px;
+        margin: 24px 0;
       }
     }
   }

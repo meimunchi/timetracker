@@ -1,0 +1,35 @@
+
+.landing-wrap{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.landing{
+    background-color: #292828;
+    position: fixed;
+    width:90%;
+    height:100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    
+    div.sign-in-sign-up{
+        padding: 8%;
+    }
+
+    div.info{
+        color:white;
+        padding-top:8%;
+        padding-left:2%;
+        display: flex;
+        flex-direction: column;
+        img{
+            height:240px;
+            width:240px;
+        }
+    }
+    div.sign-up-flow{
+
+    }
+   
+}

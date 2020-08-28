@@ -28,6 +28,11 @@ div.auth-flow {
     }
   }
 
+  .input-container .ng-touched.ng-invalid{
+    //border-left: 5px solid #a94442; /* red */
+    border-style: solid;
+  }
+
   form {
     display: grid;
     grid-template-columns: 1fr 180px;
@@ -42,6 +47,10 @@ div.auth-flow {
       justify-content: center;
       background: #EDF5FD;
 
+      
+      
+      border-style:solid;
+      border-color: red;
       padding: 12px;
       border-radius: 154px;
       box-shadow: 0 4px 4px rgba(#000000, 0.25);
@@ -84,3 +93,5 @@ div.auth-flow {
     }
   }
 }
+
+

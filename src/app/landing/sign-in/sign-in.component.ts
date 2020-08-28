@@ -11,8 +11,7 @@ import {FormGroup, FormControl} from '@angular/forms'
   styleUrls: ['../sign-up/sign-up.component.scss', './sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  email: string;
-  password: string;
+  
   signOnForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -28,7 +27,9 @@ export class SignInComponent implements OnInit {
   }
 
   login(){
-    from(this.auth.signInWithEmailAndPassword(this.email, this.password))
+
+   
+    from(this.auth.signInWithEmailAndPassword(this.signOnForm.value.email, this.signOnForm.value.password))
       .subscribe((user) => { this.router.navigate(['dashboard']); },
         (err) => { console.log(err); });
   }

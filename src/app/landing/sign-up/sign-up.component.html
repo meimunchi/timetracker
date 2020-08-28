@@ -1,52 +1,95 @@
 <div class="auth-flow">
   <h1>Create account</h1>
-  <form (ngSubmit)="createAccount()">
+  
+  <form [formGroup]='signUpForm'>
+    
     <div class="input-container">
       <img
         src="assets/icons/person-24px.svg"
         alt="Chevron Right Icon"
       >
       <label>
-        <input placeholder="First Name" [(ngModel)]="firstName" name="firstName" required>
+        <input placeholder="First Name" formControlName='firstName' name="firstName" required>
       </label>
     </div>
+   <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+    class="alert">
+    <div *ngIf="firstName.errors.required">
+      *required
+    </div>
+  </div>
+  
+
     <div class="input-container">
       <img
         src="assets/icons/person-24px.svg"
         alt="Chevron Right Icon"
       >
       <label>
-        <input placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required>
+        <input placeholder="Last Name" formControlName='lastName' name="lastName" required>
       </label>
     </div>
+
+     <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+    class="alert ">
+    <div *ngIf="lastName.errors.required">
+      *required
+    </div>
+  </div>
+
+
     <div class="input-container">
       <img
         src="assets/icons/mail-24px.svg"
         alt="Mail Icon"
       >
       <label>
-        <input placeholder="Email Address" [(ngModel)]="email" name="email" required>
+        <input placeholder="Email Address" type="email" formControlName="email" name="email" required>
       </label>
     </div>
+
+  <div *ngIf="email.invalid && (email.dirty || email.touched)"
+    class="alert ">
+    <div *ngIf="email.errors.required">
+      *required.
+    </div>
+  </div>
+
     <div class="input-container">
       <img
         src="assets/icons/lock-24px.svg"
         alt="Lock Icon"
       >
       <label>
-        <input placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+        <input placeholder="Password" formControlName="password" type="password" name="password" required>
       </label>
     </div>
+    
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+    class="alert">
+    <div *ngIf="password.errors.required">
+      *required
+    </div>
+    <div *ngIf="password.errors.minlength">
+      *password must be 8 characters or more
+    </div>
+  </div>
+
     <div class="input-container">
       <img
         src="assets/icons/lock-24px.svg"
         alt="Lock Icon"
       >
       <label>
-        <input placeholder="Verify Password" [(ngModel)]="verifyPassword" type="password" name="verifyPassword" required>
+        <input placeholder="Verify Password" formControlName="verifyPassword" type="password" name="verifyPassword" required>
       </label>
     </div>
-    <button (click)="createAccount()">
+
+    <div *ngIf="signUpForm.errors?.noMatch && (signUpForm.touched || signUpForm.dirty)">
+      Your passwords do not match
+    </div>
+
+    <button type ="submit" (click)="createAccount()" [disabled]="!signUpForm.valid">
       Create Account
       <img
         src="assets/icons/chevron_right-52px.svg"

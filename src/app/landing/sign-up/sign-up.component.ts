@@ -5,6 +5,7 @@ import { from } from 'rxjs'
 import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
 import { Validators } from '@angular/forms';
 import { passwordVerificationValidator } from './password-verification.directive';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -12,11 +13,18 @@ import { passwordVerificationValidator } from './password-verification.directive
 })
 export class SignUpComponent implements OnInit {
   
+  err ={
+    isError:false,
+    errorMessage:''
+  }
   signUpForm = this.fb.group({
     firstName: ['',Validators.required],
     lastName:['',Validators.required],
     email: ['',Validators.required],
-    password: ['',Validators.required],
+    password: ['',
+      [Validators.required,
+      Validators.minLength(8),]
+    ],
     verifyPassword: ['',
     [
       Validators.required,
@@ -28,9 +36,11 @@ export class SignUpComponent implements OnInit {
   get firstName() { return this.signUpForm.get('firstName'); }
   get lastName() { return this.signUpForm.get('lastName'); }
   get email() { return this.signUpForm.get('email'); }
-  get password() { return this.signUpForm.get('password'); }
+  get password() {
+    //console.log(this.signUpForm.get('password'))
+    return this.signUpForm.get('password'); }
   get verifyPassword() { return this.signUpForm.get('verifyPassword'); }
-  
+
   constructor(
     private auth : AngularFireAuth,
     private router: Router,
@@ -47,6 +57,22 @@ export class SignUpComponent implements OnInit {
     //error handling
     from(this.auth.createUserWithEmailAndPassword(this.signUpForm.value.email, this.signUpForm.value.password))
       .subscribe((user) => { this.router.navigate(['dashboard']); },
-        (err) => { console.log(err); });
+        (err) => { 
+          console.log(err);
+          this.err.isError = true;
+          this.err.errorMessage = this.getErrorMessage(err.code);
+         });
+  }
+
+  getErrorMessage(code : string){
+    if(code == "auth/invalid-email"){
+      return "you have entered an invalid email";
+    }
+    else if(code == "auth/email-already-in-use"){
+      return "there is already an account with this email. Did you mean to sign in?"
+    }
+    else{
+      return "an error has occured"
+    }
   }
 }

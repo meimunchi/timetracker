@@ -11,7 +11,10 @@ import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
   styleUrls: ['../sign-up/sign-up.component.scss', './sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  
+  err ={
+    isError:false,
+    errorMessage:''
+  }
   signOnForm = this.fb.group({
     email:['',Validators.required],
     password:['',
@@ -33,13 +36,29 @@ export class SignInComponent implements OnInit {
   get email(){return this.signOnForm.get('email')}
   get password(){return this.signOnForm.get('password')}
 
-  
+
   login(){
 
-   
+   this.err.isError = false;
     from(this.auth.signInWithEmailAndPassword(this.signOnForm.value.email, this.signOnForm.value.password))
       .subscribe((user) => { this.router.navigate(['dashboard']); },
-        (err) => { console.log(err); });
+        (err) => { 
+          //console.log(err); 
+          this.err.isError = true;
+          this.err.errorMessage = this.getErrorMessage(err.code);
+        });
+  }
+
+  getErrorMessage(code : string){
+    if(code == "auth/invalid-email"){
+      return "you have entered an invalid email";
+    }
+    else if(code == "auth/wrong-password"){
+      return "incorrect password"
+    }
+    else{
+      return "an error has occured"
+    }
   }
 
   loginWithGoogle() :void {

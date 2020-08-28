@@ -11,7 +11,13 @@
   <hr>
   <p>Or use your email account with us</p>
   <form [formGroup] ='signOnForm'>
-    <div class="input-container">
+
+    <div class="alert" *ngIf="err.isError">
+        *{{err.errorMessage}}
+    </div>
+    <div class="input-container" [ngClass]="{
+      'err': email.invalid && (email.dirty || email.touched)
+    }">
       <img
         src="assets/icons/mail-24px.svg"
         alt="Mail Icon"
@@ -28,7 +34,9 @@
       </div>
     </div>
 
-    <div class="input-container">
+    <div class="input-container" [ngClass]="{
+      'err': password.invalid && (password.dirty || password.touched)
+    }">
       <img
         src="assets/icons/lock-24px.svg"
         alt="Lock Icon"

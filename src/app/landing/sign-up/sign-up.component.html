@@ -2,8 +2,12 @@
   <h1>Create account</h1>
   
   <form [formGroup]='signUpForm'>
-    
-    <div class="input-container">
+    <div class="alert" *ngIf="err.isError">
+      *{{err.errorMessage}}
+  </div>
+    <div class="input-container" [ngClass]="{
+      'err': firstName.invalid && (firstName.dirty || firstName.touched)
+    }">
       <img
         src="assets/icons/person-24px.svg"
         alt="Chevron Right Icon"
@@ -12,6 +16,7 @@
         <input placeholder="First Name" formControlName='firstName' name="firstName" required>
       </label>
     </div>
+
    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
     class="alert">
     <div *ngIf="firstName.errors.required">
@@ -20,7 +25,9 @@
   </div>
   
 
-    <div class="input-container">
+    <div class="input-container" [ngClass]="{
+      'err': lastName.invalid && (lastName.dirty || lastName.touched)
+    }">
       <img
         src="assets/icons/person-24px.svg"
         alt="Chevron Right Icon"
@@ -38,7 +45,9 @@
   </div>
 
 
-    <div class="input-container">
+    <div class="input-container" [ngClass]="{
+      'err': email.invalid && (email.dirty || email.touched)
+    }">
       <img
         src="assets/icons/mail-24px.svg"
         alt="Mail Icon"
@@ -55,7 +64,9 @@
     </div>
   </div>
 
-    <div class="input-container">
+    <div class="input-container" [ngClass]="{
+      'err': password.invalid && (password.dirty || password.touched)
+    }">
       <img
         src="assets/icons/lock-24px.svg"
         alt="Lock Icon"
@@ -75,7 +86,9 @@
     </div>
   </div>
 
-    <div class="input-container">
+    <div class="input-container" [ngClass]="{
+      'err': verifyPassword.invalid && (verifyPassword.dirty || verifyPassword.touched)
+    }">
       <img
         src="assets/icons/lock-24px.svg"
         alt="Lock Icon"
@@ -85,7 +98,7 @@
       </label>
     </div>
 
-    <div class = "alert" *ngIf="signUpForm.errors?.noMatch && (signUpForm.touched || signUpForm.dirty)">
+    <div class = "alert" *ngIf="signUpForm.errors?.noMatch && (verifyPassword.touched || verifyPassword.dirty)">
       *your passwords do not match
     </div>
 

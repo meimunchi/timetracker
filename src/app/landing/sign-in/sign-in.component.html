@@ -20,6 +20,14 @@
         <input placeholder="Email Address" formControlName='email' name="email" required>
       </label>
     </div>
+
+    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+    class="alert">
+     <div *ngIf="email.errors.required">
+      *required
+      </div>
+    </div>
+
     <div class="input-container">
       <img
         src="assets/icons/lock-24px.svg"
@@ -29,6 +37,14 @@
         <input placeholder="Password" formControlName="password" type="password" name="password" required>
       </label>
     </div>
+
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+    class="alert">
+     <div *ngIf="password.errors.required">
+      *required
+      </div>
+    </div>
+
     <button (click)="login()">
       Sign In
       <img

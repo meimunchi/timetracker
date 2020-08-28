@@ -85,8 +85,8 @@
       </label>
     </div>
 
-    <div *ngIf="signUpForm.errors?.noMatch && (signUpForm.touched || signUpForm.dirty)">
-      Your passwords do not match
+    <div class = "alert" *ngIf="signUpForm.errors?.noMatch && (signUpForm.touched || signUpForm.dirty)">
+      *your passwords do not match
     </div>
 
     <button type ="submit" (click)="createAccount()" [disabled]="!signUpForm.valid">

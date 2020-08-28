@@ -3,8 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { from } from 'rxjs'
-import {FormGroup, FormControl} from '@angular/forms'
-
+import {FormGroup, FormControl, Validators} from '@angular/forms'
+import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -12,13 +12,17 @@ import {FormGroup, FormControl} from '@angular/forms'
 })
 export class SignInComponent implements OnInit {
   
-  signOnForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+  signOnForm = this.fb.group({
+    email:['',Validators.required],
+    password:['',
+      Validators.required,
+      
+    ]
   })
   constructor(
     public auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private fb : FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +30,10 @@ export class SignInComponent implements OnInit {
     this.auth.user.subscribe((user) => this.router.navigate(['dashboard']))
   }
 
+  get email(){return this.signOnForm.get('email')}
+  get password(){return this.signOnForm.get('password')}
+
+  
   login(){
 
    

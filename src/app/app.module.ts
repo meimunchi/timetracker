@@ -1,11 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 //angular material imports : if you import anything from material, put it in ./core/material.module.ts :)
 import { CustomMaterialModule } from './core/material.module'
@@ -19,7 +18,9 @@ import { SignInComponent } from './landing/sign-in/sign-in.component'
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from './landing/sign-up/sign-up.component';
 import { LandingComponent } from './landing/landing.component'
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CalendarComponent } from './dashboard/calendar/calendar.component';
+import { CalendarDayComponent } from './dashboard/calendar/calendar-day/calendar-day.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     DashboardComponent,
     SignInComponent,
     SignUpComponent,
-    LandingComponent
+    LandingComponent,
+    CalendarComponent,
+    CalendarDayComponent
   ],
   imports: [
     BrowserModule,

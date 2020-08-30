@@ -1,0 +1,35 @@
+div.calendar-day-container {
+  text-align: center;
+  max-width: 120px;
+
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  div.time-container {
+    max-height: 600px;
+    border: 1px solid #B0ADAD;
+    border-radius: 12px;
+    padding: 4px;
+    background: #FFFFFF;
+    overflow-y: hidden;
+
+    div.time-option {
+      background: #FFFFFF;
+      height: 20px;
+      border: 1px solid #232020;
+      -webkit-user-select: none;  /* Safari */
+      -ms-user-select: none;      /* IE 10+ and Edge */
+      user-select: none;
+
+      &.selected {
+        background: #73BCFF;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

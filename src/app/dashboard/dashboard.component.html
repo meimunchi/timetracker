@@ -7,10 +7,13 @@
           <img src='assets/logo/miri-logo.png' alt='Miri Logo'>
         </div>
         <div class="calendar-options">
-          <button class ="option" >MAIN CALENDAR</button>
-          <button class ="option"(click)="toggleExpansion()">EVENT CALENDARS</button>
+          <button  >MAIN CALENDAR</button>
+          <button class ="option"(click)="toggleExpansion()">EVENT CALENDARS
+            <mat-icon *ngIf="!expanded">keyboard_arrow_right</mat-icon>
+            <mat-icon *ngIf="expanded">keyboard_arrow_down</mat-icon>
+          </button>
           <div class = "expansion-body" *ngIf="expanded">
-            <div ngIf*="eventCalendars.length() == 0">No current Event Calendars</div>
+            <div>No current Event Calendars</div>
           </div>
         </div>
         <div class="new-calendar">

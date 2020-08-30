@@ -1,0 +1,15 @@
+<div class="calendar-day-container">
+  <h1>Sun</h1>
+<!--  TODO: Add a global scroll managed in calendar component-->
+  <div class="time-container">
+    <div
+      *ngFor="let time of timeArr; index as i"
+      (mousedown)="selectFromHere(i)"
+      (mouseup)="stopSelectHere()"
+      (mouseover)="includeSelect(i)"
+      [class.selected] = "time === 1"
+      class="time-option"
+      [id]="i"
+    ></div>
+  </div>
+</div>

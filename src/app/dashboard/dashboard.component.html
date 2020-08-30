@@ -1,6 +1,6 @@
 
 <mat-sidenav-container class="dashboard-container" >
-  
+
     <mat-sidenav  mode="side" opened>
       <div class="sidenav">
         <div class="logo">
@@ -8,7 +8,7 @@
         </div>
         <div class="calendar-options">
           <button  >MAIN CALENDAR</button>
-          <button class ="option"(click)="toggleExpansion()">EVENT CALENDARS
+          <button class ="option" (click)="toggleExpansion()">EVENT CALENDARS
             <mat-icon *ngIf="!expanded">keyboard_arrow_right</mat-icon>
             <mat-icon *ngIf="expanded">keyboard_arrow_down</mat-icon>
           </button>
@@ -17,20 +17,21 @@
           </div>
         </div>
         <div class="new-calendar">
-          <button > 
+          <button >
             ADD EVENT
             <mat-icon class="icon">add_circle_outline</mat-icon>
-            
+
           </button>
           <button (click)="logout()">Logout</button>
         </div>
       </div>
-      
-      
+
+
     </mat-sidenav>
     <mat-sidenav-content class="main-content">
-        
-       <img src='assets/working.png' alt="working on it">
-       <h1>Amazing things are in the process of being built :)</h1>
+
+<!--       <img src='assets/working.png' alt="working on it">-->
+<!--       <h1>Amazing things are in the process of being built :)</h1>-->
+      <app-calendar></app-calendar>
     </mat-sidenav-content>
   </mat-sidenav-container>

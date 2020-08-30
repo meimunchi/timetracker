@@ -1,74 +1,33 @@
 
-<mat-sidenav-container class="example-container" >
-    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+<mat-sidenav-container class="dashboard-container" >
+  
+    <mat-sidenav  mode="side" opened>
+      <div class="sidenav">
+        <div class="logo">
+          <img src='assets/logo/miri-logo.png' alt='Miri Logo'>
+        </div>
+        <div class="calendar-options">
+          <button class ="option" >MAIN CALENDAR</button>
+          <button class ="option"(click)="toggleExpansion()">EVENT CALENDARS</button>
+          <div class = "expansion-body" *ngIf="expanded">
+            <div ngIf*="eventCalendars.length() == 0">No current Event Calendars</div>
+          </div>
+        </div>
+        <div class="new-calendar">
+          <button > 
+            ADD EVENT
+            <mat-icon class="icon">add_circle_outline</mat-icon>
+            
+          </button>
+          <button (click)="logout()">Logout</button>
+        </div>
+      </div>
+      
+      
+    </mat-sidenav>
     <mat-sidenav-content class="main-content">
-        <button mat-buttom (click)="logout()">Logout</button>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- Position Column -->
-            <ng-container matColumnDef="dayTimes">
-                <th mat-header-cell *matHeaderCellDef> </th>
-                <td mat-cell *matCellDef="let element"> {{element.time}} </td>
-              </ng-container>
-
-            <ng-container matColumnDef="Sunday">
-                <th mat-header-cell *matHeaderCellDef> Sunday </th>
-                <td mat-cell *matCellDef="let element"><button mat-button>{{element.sun}}</button>  </td>
-              </ng-container>
-
-              <ng-container matColumnDef="Monday">
-                <th mat-header-cell *matHeaderCellDef> Monday </th>
-                <td mat-cell *matCellDef="let element"> <button mat-button>{{element.mon}}</button> </td>
-              </ng-container>
-
-              <ng-container matColumnDef="Tuesday">
-                <th mat-header-cell *matHeaderCellDef> Tuesday </th>
-                <td mat-cell *matCellDef="let element"> <button mat-button>{{element.tue}}</button> </td>
-              </ng-container>
-
-              <ng-container matColumnDef="Wednesday">
-                <th mat-header-cell *matHeaderCellDef> Wednesday </th>
-                <td mat-cell *matCellDef="let element"> <button mat-button>{{element.wed}}</button> </td>
-              </ng-container>
-
-              <ng-container matColumnDef="Thursday">
-                <th mat-header-cell *matHeaderCellDef> Thursday </th>
-                <td mat-cell *matCellDef="let element"> <button mat-button>{{element.thur}}</button> </td>
-              </ng-container>
-
-              <ng-container matColumnDef="Friday">
-                <th mat-header-cell *matHeaderCellDef> Friday </th>
-                <td mat-cell *matCellDef="let element"> <button mat-button>{{element.fri}}</button> </td>
-              </ng-container>
-
-              <ng-container matColumnDef="Saturday">
-                <th mat-header-cell *matHeaderCellDef> Saturday </th>
-                <td mat-cell *matCellDef="let element"> <button mat-button>{{element.sat}}</button> </td>
-              </ng-container>
-          
-           <!--  Name Column 
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Name </th>
-              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-          
-            
-            <ng-container matColumnDef="weight">
-              <th mat-header-cell *matHeaderCellDef> Weight </th>
-              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-          
-            
-            <ng-container matColumnDef="symbol">
-              <th mat-header-cell *matHeaderCellDef> Symbol </th>
-              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>-->
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+        
+       <img src='assets/working.png' alt="working on it">
+       <h1>Amazing things are in the process of being built :)</h1>
     </mat-sidenav-content>
   </mat-sidenav-container>

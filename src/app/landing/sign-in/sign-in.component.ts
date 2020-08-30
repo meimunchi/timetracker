@@ -3,8 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { from } from 'rxjs'
-import {FormGroup, FormControl, Validators} from '@angular/forms'
-import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
+import { Validators} from '@angular/forms'
+import {FormBuilder} from '@angular/forms'
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',

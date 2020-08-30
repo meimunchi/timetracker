@@ -7,11 +7,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   imports: [
@@ -26,7 +29,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatExpansionModule,
+    
   ],
   exports: [
     CommonModule,
@@ -40,7 +45,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatExpansionModule,
+    
   ],
 })
 export class CustomMaterialModule { }

@@ -3,17 +3,87 @@ table {
   
   }
 
-  .example-container {
+  .dashboard-container {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background: #eee;
-  }
+    
+    .sidenav{
+     // display: flex;
+      //flex-direction: column;
+     // justify-content: space-between;
+      height:100%;
+      background-color:#292828 ;
+      width:200px;
+      display:grid;
+      grid-template-columns: auto;
+      grid-template-rows: 30% 50% 20%;
+      button{
+        color:white;
+        background-color:#292828 ;
+        border:none;
+        padding:15px;
+        text-align:left;
+        font-size: 16px;
+        text-decoration: none;
+        transition-duration: 0.4s;
+      }
 
-  .main-content{
+      button:hover{
+        background-color:#828080;
+      }
+     
+      
+      .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 28px 0;
+
+        img {
+          width: 100px;
+        }
+      }
+
+    .calendar-options{
+      display:flex;
+      flex-direction: column;
+      //justify-content: space-between;
+      
+
+      
+    }
+
+      .new-calendar{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        
+        button{
+          display:flex;
+          justify-content: space-between;
+        }
+        .icon{
+          padding: 0px 0px 0px 5px;
+         
+        }
+      }
+    }
+    .main-content{
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      img{
+        padding-bottom: 50px;
+        width:400px;
+        //height:500px;
+      }
   }
+    
+  }
+
+  

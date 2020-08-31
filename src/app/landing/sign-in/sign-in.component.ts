@@ -5,13 +5,15 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs'
 import { Validators} from '@angular/forms'
 import {FormBuilder} from '@angular/forms'
+import { IError } from './error';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['../sign-up/sign-up.component.scss', './sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  err ={
+  err : IError
+    ={
     isError:false,
     errorMessage:''
   }
@@ -33,7 +35,7 @@ export class SignInComponent implements OnInit {
     this.auth.user.subscribe((user) => this.router.navigate(['dashboard']))
   }
 
-  get email(){return this.signOnForm.get('email')}
+  get email(){ return this.signOnForm.get('email')}
   get password(){return this.signOnForm.get('password')}
 
 

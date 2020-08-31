@@ -19,9 +19,9 @@
 
    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
     class="alert">
-    <div *ngIf="firstName.errors.required">
+    
       *required
-    </div>
+   
   </div>
   
 
@@ -39,9 +39,9 @@
 
      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
     class="alert ">
-    <div *ngIf="lastName.errors.required">
+    
       *required
-    </div>
+    
   </div>
 
 
@@ -59,9 +59,9 @@
 
   <div *ngIf="email.invalid && (email.dirty || email.touched)"
     class="alert ">
-    <div *ngIf="email.errors.required">
+    
       *required.
-    </div>
+    
   </div>
 
     <div class="input-container" [ngClass]="{
@@ -78,12 +78,7 @@
     
     <div *ngIf="password.invalid && (password.dirty || password.touched)"
     class="alert">
-    <div *ngIf="password.errors.required">
-      *required
-    </div>
-    <div *ngIf="password.errors.minlength">
-      *password must be 8 characters or more
-    </div>
+      *{{passwordErrors}}
   </div>
 
     <div class="input-container" [ngClass]="{

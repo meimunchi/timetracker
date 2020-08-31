@@ -29,9 +29,7 @@
 
     <div *ngIf="email.invalid && (email.dirty || email.touched)"
     class="alert">
-     <div *ngIf="email.errors.required">
       *required
-      </div>
     </div>
 
     <div class="input-container" [ngClass]="{
@@ -48,9 +46,7 @@
 
     <div *ngIf="password.invalid && (password.dirty || password.touched)"
     class="alert">
-     <div *ngIf="password.errors.required">
       *required
-      </div>
     </div>
 
     <button (click)="login()">

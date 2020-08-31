@@ -38,9 +38,13 @@ export class SignUpComponent implements OnInit {
   get lastName() { return this.signUpForm.get('lastName'); }
   get email() { return this.signUpForm.get('email'); }
   get password() {
-    //console.log(this.signUpForm.get('password'))
+    //console.log(this.signUpForm.get('password').errors)
     return this.signUpForm.get('password'); }
   get verifyPassword() { return this.signUpForm.get('verifyPassword'); }
+  
+  get passwordErrors() {
+    return (this.password.errors.required) ?  "required" : "password must be 8 characters or more";
+  }
 
   constructor(
     private auth : AngularFireAuth,

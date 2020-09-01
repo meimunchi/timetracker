@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import {auth} from 'firebase/app'
 import { Router } from '@angular/router'
+import { UserInfoService } from '../shared/user-info.service';
+import { IUser } from '../shared/user.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +12,26 @@ import { Router } from '@angular/router'
 })
 export class DashboardComponent implements OnInit {
   panelOpenState = false;
-  user : any;
+  user : IUser;
   expanded = false;
   eventCalendars : Array<any> = [];
   constructor(
     public auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private userservice: UserInfoService
   ) { }
  
   ngOnInit(): void {
-    this.user = auth().currentUser;
-    this.user.providerData.forEach(element => {
+    //this.user = auth().currentUser;
+    /*this.user.providerData.forEach(element => {
       console.log(element);
-    });
+    });*/
+    //console.log("Email", this.user.providerData[0].email);
+    this.userservice.getUser(auth().currentUser.providerData[0].email)
+    .subscribe((user)=>{
+      this.user = user;
+      console.log(this.user);
+    })
   }
 
   toggleExpansion(){

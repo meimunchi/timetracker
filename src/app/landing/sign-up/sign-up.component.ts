@@ -6,6 +6,8 @@ import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
 import { Validators } from '@angular/forms';
 import { passwordVerificationValidator } from './password-verification.directive';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { UserInfoService } from 'src/app/shared/user-info.service';
+import { IUser } from 'src/app/shared/user.interface';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -13,7 +15,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   
 })
 export class SignUpComponent implements OnInit {
-  
+  newUser : IUser;
   err ={
     isError:false,
     errorMessage:''
@@ -49,7 +51,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private auth : AngularFireAuth,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userservice : UserInfoService
   ) { }
 
   ngOnInit(): void { }
@@ -61,7 +64,14 @@ export class SignUpComponent implements OnInit {
 
     //error handling
     from(this.auth.createUserWithEmailAndPassword(this.signUpForm.value.email, this.signUpForm.value.password))
-      .subscribe((user) => { this.router.navigate(['dashboard']); },
+      .subscribe((user) => { 
+        //here we can call createUser
+        this.userservice.createUser(this.newUser)
+        .catch((err)=>{ console.log(err)})
+
+        
+        this.router.navigate(['dashboard']); 
+      },
         (err) => { 
           console.log(err);
           this.err.isError = true;

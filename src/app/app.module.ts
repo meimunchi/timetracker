@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './core/material.module'
 //firebase imports
 import { AngularFireModule } from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 //import environment variables
 import { environment } from '../environments/environment';
@@ -40,7 +41,8 @@ import { CalendarDayComponent } from './dashboard/calendar/calendar-day/calendar
     CustomMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

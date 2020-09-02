@@ -6,8 +6,8 @@ import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
 import { Validators } from '@angular/forms';
 import { passwordVerificationValidator } from './password-verification.directive';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { UserInfoService } from 'src/app/shared/user-info.service';
-import { IUser } from 'src/app/shared/user.interface';
+import { UserInfoService } from 'src/app/shared/user/user-info.service';
+import { IUser } from 'src/app/shared/user/user.interface';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',

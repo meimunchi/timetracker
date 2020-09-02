@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import {auth} from 'firebase/app'
 import { Router } from '@angular/router'
-import { UserInfoService } from '../shared/user-info.service';
-import { IUser } from '../shared/user.interface';
+import { UserInfoService } from '../shared/user/user-info.service';
+import { IUser } from '../shared/user/user.interface';
 
 @Component({
   selector: 'app-dashboard',

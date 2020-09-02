@@ -17,7 +17,7 @@ export class UserInfoService implements OnInit{
   }
   //create user on sign in : takes in a User Object
   createUser(user:IUser): Promise<any>{
-    return this.db.collection<IUser>(this.collection).add(user);
+    return this.db.collection<IUser>(this.collection).doc<IUser>(user.email).set(user);
   }
 
   //get specific user  

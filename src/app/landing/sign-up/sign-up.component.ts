@@ -61,12 +61,22 @@ export class SignUpComponent implements OnInit {
   // TODO: Account for error handling
   //TODO: firestore create user object
   createAccount() {
-
+    this.newUser={
+      email: this.signUpForm.value.email,
+      firstName: this.signUpForm.value.firstName,
+      lastName:this.signUpForm.value.lastName,
+      mainCalendar:{}
+    }
     //error handling
     from(this.auth.createUserWithEmailAndPassword(this.signUpForm.value.email, this.signUpForm.value.password))
       .subscribe((user) => { 
         //here we can call createUser
+       
+
         this.userservice.createUser(this.newUser)
+        .then(()=>{
+          console.log("User created");
+        })
         .catch((err)=>{ console.log(err)})
 
         

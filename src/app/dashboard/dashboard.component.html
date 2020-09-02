@@ -29,9 +29,11 @@
 
     </mat-sidenav>
     <mat-sidenav-content class="main-content">
-       
+
 <!--       <img src='assets/working.png' alt="working on it">-->
 <!--       <h1>Amazing things are in the process of being built :)</h1>-->
-      <app-calendar></app-calendar>
+      <app-calendar
+        [user$]="user$"
+      ></app-calendar>
     </mat-sidenav-content>
   </mat-sidenav-container>

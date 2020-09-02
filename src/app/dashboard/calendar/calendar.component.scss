@@ -1,0 +1,30 @@
+div.calendar-container {
+  display: flex;
+  justify-content: center;
+
+  div.time-stamp-container {
+    margin-top: 6px;
+    padding: 4px 8px;
+    text-align: right;
+
+    div.time-stamp {
+      height: 22px;
+
+      h3 {
+        font-size: 16px;
+        margin: 0;
+        position: relative;
+        top: -10px;
+      }
+    }
+  }
+
+  app-calendar-day {
+    margin-right: 2px;
+    margin-top: 6px;
+
+    &:last-child {
+      margin-right: unset;
+    }
+  }
+}

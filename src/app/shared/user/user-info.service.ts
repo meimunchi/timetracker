@@ -9,18 +9,18 @@ import {map} from 'rxjs/operators'
 })
 export class UserInfoService implements OnInit{
   //private usersCollection : AngularFirestoreCollection<IUser>;
-  collection : string = 'users'
+  collection: string = 'users'
   constructor(private db : AngularFirestore) { }
   ngOnInit(){
-    //this.usersCollection = this.db.collection<IUser>(this.collection);
-    
+    //this.usersCollection = this.db.collection<IUser>(this.collection)
   }
+
   //create user on sign in : takes in a User Object
   createUser(user:IUser): Promise<any>{
     return this.db.collection<IUser>(this.collection).doc<IUser>(user.email).set(user);
   }
 
-  //get specific user  
+  //get specific user
   getUser(email:string) : Observable<IUser>{
     return this.db.collection<IUser>(this.collection).doc<IUser>(email).snapshotChanges()
     .pipe(map(snap => {
@@ -30,6 +30,4 @@ export class UserInfoService implements OnInit{
       return {email: email, ...data}
     }))
   }
-
-  
 }

@@ -5,23 +5,20 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs'
 import { Validators} from '@angular/forms'
 import {FormBuilder} from '@angular/forms'
-import { IError } from './error';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['../sign-up/sign-up.component.scss', './sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  err : IError
-    ={
+  err = {
     isError:false,
     errorMessage:''
   }
   signOnForm = this.fb.group({
     email:['',Validators.required],
     password:['',
-      Validators.required,
-      
+      Validators.required
     ]
   })
   constructor(
@@ -35,7 +32,7 @@ export class SignInComponent implements OnInit {
     this.auth.user.subscribe((user) => this.router.navigate(['dashboard']))
   }
 
-  get email(){ return this.signOnForm.get('email')}
+  get email(){return this.signOnForm.get('email')}
   get password(){return this.signOnForm.get('password')}
 
 
@@ -44,8 +41,8 @@ export class SignInComponent implements OnInit {
    this.err.isError = false;
     from(this.auth.signInWithEmailAndPassword(this.signOnForm.value.email, this.signOnForm.value.password))
       .subscribe((user) => { this.router.navigate(['dashboard']); },
-        (err) => { 
-          //console.log(err); 
+        (err) => {
+          //console.log(err);
           this.err.isError = true;
           this.err.errorMessage = this.getErrorMessage(err.code);
         });
@@ -59,7 +56,7 @@ export class SignInComponent implements OnInit {
       return "incorrect password"
     }
     else{
-      return "an error has occured"
+      return "an error has occurred"
     }
   }
 

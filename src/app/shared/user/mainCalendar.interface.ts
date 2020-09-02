@@ -1,4 +1,10 @@
-//plan to change this 
+//plan to change this
 export interface IMainCalendar{
-    Monday?: Array<number>
+    Monday?: number[];
+    Tuesday?: number[];
+    Wednesday?: number[];
+    Thursday?: number[];
+    Friday?: number[];
+    Saturday?: number[];
+    Sunday?: number[];
 }

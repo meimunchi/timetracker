@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 import { SelectOption } from './select-option'
 
 @Component({
@@ -7,7 +7,7 @@ import { SelectOption } from './select-option'
   styleUrls: ['./calendar-day.component.scss']
 })
 export class CalendarDayComponent implements OnInit {
-  timeArr: number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  @Input() timeArr: number[];
   selectOption: SelectOption | null = null;
 
   constructor() { }
@@ -15,10 +15,12 @@ export class CalendarDayComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // TODO: Functionality only works on desktop
+  // TODO: Functionality may not apply if user brings mouse away
   selectFromHere(index: number): void {
-    const value = (this.timeArr[index] === 0) ? 1 : 0;
-    this.timeArr[index] = value;
-    this.selectOption = { index, value };
+    const oppositeValue = (this.timeArr[index] === 0) ? 1 : 0;
+    this.timeArr[index] = oppositeValue;
+    this.selectOption = { index, value: oppositeValue };
   }
 
   stopSelectHere(): void {

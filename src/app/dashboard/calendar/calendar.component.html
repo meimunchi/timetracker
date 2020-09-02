@@ -1,4 +1,14 @@
-<div>
-  <h3>EST</h3>
-  <app-calendar-day></app-calendar-day>
+<div class="calendar-container">
+  <div class="time-stamp-container">
+    <div
+      *ngFor="let timeArr of timeArrs[0]; index as i"
+      class="time-stamp"
+    >
+      <h3>{{ getTimeStamp(i) }}</h3>
+    </div>
+  </div>
+  <app-calendar-day
+    *ngFor="let timeArr of timeArrs"
+    [timeArr]="timeArr"
+  ></app-calendar-day>
 </div>

@@ -1,6 +1,10 @@
 div.calendar-container {
   display: flex;
   justify-content: center;
+  max-height: 658px;
+  width: min-content;
+  overflow-y: auto;
+  padding: 8px;
 
   div.time-stamp-container {
     margin-top: 6px;

@@ -4,7 +4,7 @@
       *ngFor="let timeArr of timeArrs[0]; index as i"
       class="time-stamp"
     >
-      <h3>{{ getTimeStamp(i) }}</h3>
+      <h3>{{ getTimeStamp(i) + getAmPm(i) }}</h3>
     </div>
   </div>
   <app-calendar-day

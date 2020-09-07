@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import {auth} from 'firebase/app'
 import { Router } from '@angular/router'
-import { UserInfoService } from '../shared/user/user-info.service';
+import { UserService } from '../shared/user/user.service';
 import { IUser } from '../shared/user/user.interface';
 import { Observable } from 'rxjs'
 
@@ -19,14 +19,15 @@ export class DashboardComponent implements OnInit {
   constructor(
     public auth: AngularFireAuth,
     private router: Router,
-    private userService: UserInfoService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
+    // TODO: Must account for creating user who signed in with Google
     this.user$ = this.userService.getUser(auth().currentUser.providerData[0].email);
     this.user$.subscribe((user) => {
         this.user = user;
-        // console.log(this.user);
+        console.log(this.user);
       });
   }
 

@@ -1,7 +1,9 @@
 <!--<div class="calendar-day-container">-->
 <!--  <h1>{{day}}</h1>-->
 <!--  TODO: Add a global scroll managed in calendar component-->
-<div class="time-container">
+<div class="time-container"
+  (mouseleave)="stopSelectHere()"
+>
   <div
     *ngFor="let time of timeArr; index as i"
     (mousedown)="selectFromHere(i)"

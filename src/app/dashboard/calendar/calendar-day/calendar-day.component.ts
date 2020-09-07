@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { SelectOption } from './select-option'
 
 @Component({
@@ -8,6 +8,7 @@ import { SelectOption } from './select-option'
 })
 export class CalendarDayComponent implements OnInit {
   @Input() timeArr: number[];
+  @Output() setTimeArr = new EventEmitter<number[]>();
   selectOption: SelectOption | null = null;
 
   constructor() { }
@@ -16,7 +17,6 @@ export class CalendarDayComponent implements OnInit {
   }
 
   // TODO: Functionality only works on desktop
-  // TODO: Functionality may not apply if user brings mouse away
   selectFromHere(index: number): void {
     const oppositeValue = (this.timeArr[index] === 0) ? 1 : 0;
     this.timeArr[index] = oppositeValue;
@@ -24,6 +24,9 @@ export class CalendarDayComponent implements OnInit {
   }
 
   stopSelectHere(): void {
+    if (this.selectOption) {
+      this.setTimeArr.emit(this.timeArr);
+    }
     this.selectOption = null;
     // TODO: Create an event option here
   }

@@ -6,13 +6,13 @@ import {FormBuilder, Validator, ValidatorFn} from '@angular/forms'
 import { Validators } from '@angular/forms';
 import { passwordVerificationValidator } from './password-verification.directive';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { UserInfoService } from 'src/app/shared/user/user-info.service';
+import { UserService } from 'src/app/shared/user/user.service';
 import { IUser } from 'src/app/shared/user/user.interface';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
-  
+
 })
 export class SignUpComponent implements OnInit {
   newUser : IUser;
@@ -32,7 +32,7 @@ export class SignUpComponent implements OnInit {
     [
       Validators.required,
       Validators.minLength(8),
-      
+
     ]],
   },{validators:passwordVerificationValidator})
 
@@ -43,7 +43,7 @@ export class SignUpComponent implements OnInit {
     //console.log(this.signUpForm.get('password').errors)
     return this.signUpForm.get('password'); }
   get verifyPassword() { return this.signUpForm.get('verifyPassword'); }
-  
+
   get passwordErrors() {
     return (this.password.errors.required) ?  "required" : "password must be 8 characters or more";
   }
@@ -52,26 +52,33 @@ export class SignUpComponent implements OnInit {
     private auth : AngularFireAuth,
     private router: Router,
     private fb: FormBuilder,
-    private userservice : UserInfoService
+    private userservice : UserService
   ) { }
 
   ngOnInit(): void { }
 
   // Depending on what you want the flow to be, we can change
   // TODO: Account for error handling
-  //TODO: firestore create user object
   createAccount() {
-    this.newUser={
+    this.newUser = {
       email: this.signUpForm.value.email,
       firstName: this.signUpForm.value.firstName,
       lastName:this.signUpForm.value.lastName,
-      mainCalendar:{}
+      mainCalendar: {
+        Sunday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        Monday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        Tuesday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        Wednesday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        Thursday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        Friday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        Saturday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      }
     }
     //error handling
     from(this.auth.createUserWithEmailAndPassword(this.signUpForm.value.email, this.signUpForm.value.password))
-      .subscribe((user) => { 
+      .subscribe((user) => {
         //here we can call createUser
-       
+
 
         this.userservice.createUser(this.newUser)
         .then(()=>{
@@ -79,10 +86,10 @@ export class SignUpComponent implements OnInit {
         })
         .catch((err)=>{ console.log(err)})
 
-        
-        this.router.navigate(['dashboard']); 
+
+        this.router.navigate(['dashboard']);
       },
-        (err) => { 
+        (err) => {
           console.log(err);
           this.err.isError = true;
           this.err.errorMessage = this.getErrorMessage(err.code);
@@ -97,7 +104,7 @@ export class SignUpComponent implements OnInit {
       return "there is already an account with this email. Did you mean to sign in?"
     }
     else{
-      return "an error has occured"
+      return "an error has occurred"
     }
   }
 }

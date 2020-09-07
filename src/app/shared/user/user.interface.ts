@@ -1,5 +1,14 @@
 import { ICurrentEvent } from './currentEvent.interface';
-import { IMainCalendar } from './mainCalendar.interface';
+
+export interface IMainCalendar{
+  Sunday: number[];
+  Monday: number[];
+  Tuesday: number[];
+  Wednesday: number[];
+  Thursday: number[];
+  Friday: number[];
+  Saturday: number[];
+}
 
 export interface IUser{
     email: string,

@@ -1,4 +1,11 @@
-<div class="calendar-container">
+<div class="calendar-heading-container">
+  <h4>EST</h4>
+  <h3 *ngFor="let day of daysOfWeek">{{ day }}</h3>
+</div>
+<div
+  *ngIf="timeArrs"
+  class="calendar-container"
+>
   <div class="time-stamp-container">
     <div
       *ngFor="let timeArr of timeArrs[0]; index as i"
@@ -8,7 +15,8 @@
     </div>
   </div>
   <app-calendar-day
-    *ngFor="let timeArr of timeArrs"
+    *ngFor="let timeArr of timeArrs; index as i"
     [timeArr]="timeArr"
+    (setTimeArr)="setTimeArrs($event, i)"
   ></app-calendar-day>
 </div>

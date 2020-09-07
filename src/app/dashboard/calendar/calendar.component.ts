@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { IUser } from '../../shared/user/user.interface'
 import { Observable } from 'rxjs'
+import { UserService } from '../../shared/user/user.service'
+import { DaysOfWeek } from './daysOfWeek'
 
 @Component({
   selector: 'app-calendar',
@@ -9,26 +11,25 @@ import { Observable } from 'rxjs'
 })
 export class CalendarComponent implements OnInit {
   @Input() user$: Observable<IUser>;
+  user: IUser;
 
-  daysOfWeek: string[] = ['Sun', 'Mon', 'Tue', 'Wed'];
-  // = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-  timeArrs: number[][] = [
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-  ];
+  timeArrs: number[][];
+  daysOfWeek: DaysOfWeek[];
 
-  constructor() { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.user$.subscribe(user => {
-      console.log(user)
+      this.user = user;
+
+      const calendarEntries = Object.entries(this.user.mainCalendar);
+      calendarEntries.sort(([dayA,timeArrA], [dayB,timeArrB]) => {
+        return this.getIndexFromDay(dayA as DaysOfWeek) - this.getIndexFromDay(dayB as DaysOfWeek);
+      })
+
+      this.timeArrs = calendarEntries.map(([_, timeArr]) => timeArr);
+      this.daysOfWeek = calendarEntries.map(([day, _]) => day as DaysOfWeek);
     })
-    console.log('Hello')
   }
 
   getTimeStamp(index: number): string {
@@ -49,5 +50,34 @@ export class CalendarComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  getIndexFromDay(day: DaysOfWeek) {
+    switch(day) {
+      case 'Sunday': return 0;
+      case 'Monday': return 1;
+      case 'Tuesday': return 2;
+      case 'Wednesday': return 3;
+      case 'Thursday': return 4;
+      case 'Friday': return 5;
+      case 'Saturday': return 6;
+    }
+  }
+
+  getDayFromIndex(index: number): DaysOfWeek {
+    switch(index) {
+      case 0: return 'Sunday';
+      case 1: return 'Monday';
+      case 2: return 'Tuesday';
+      case 3: return 'Wednesday';
+      case 4: return 'Thursday';
+      case 5: return 'Friday';
+      case 6: return 'Saturday';
+    }
+  }
+
+  setTimeArrs(timeArr: number[], index: number) {
+    this.user.mainCalendar[this.getDayFromIndex(index)] = timeArr;
+    this.userService.updateMainCalendar(this.user)
   }
 }

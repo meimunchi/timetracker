@@ -40,6 +40,10 @@ e2e:
   only:
     - master
     - dev
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules
 
 prod-hosting:
   stage: deploy
@@ -52,3 +56,7 @@ prod-hosting:
   environment:
     name: production
     url: https://timetracker-ca7f3.web.app/
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules

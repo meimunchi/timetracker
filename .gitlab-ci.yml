@@ -39,7 +39,7 @@ e2e:
     - npm run e2e
   only:
     - master
-    - develop
+    - dev
 
 prod-hosting:
   stage: deploy

@@ -4,7 +4,7 @@ import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 import { from } from 'rxjs'
 import { Validators} from '@angular/forms'
-import {FormBuilder} from '@angular/forms'
+import { FormBuilder } from '@angular/forms'
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',

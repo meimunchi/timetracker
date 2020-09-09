@@ -1,5 +1,9 @@
 image: node:12.13.0-alpine
 
+stages:
+  - test
+  - deploy
+
 before_script:
   - npm i -g firebase-tools
   - npm i -g @angular/cli
@@ -27,6 +31,15 @@ deploy-functions:
       - master
     changes:
       - functions/**/*
+
+e2e:
+  stage: test
+  script:
+    - npm install
+    - npm run e2e
+  only:
+    - master
+    - develop
 
 prod-hosting:
   stage: deploy

@@ -14,7 +14,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -31,7 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatExpansionModule,
-    
+    MatProgressBarModule
   ],
   exports: [
     CommonModule,
@@ -47,7 +47,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatExpansionModule,
-    
+    MatProgressBarModule
   ],
 })
 export class CustomMaterialModule { }

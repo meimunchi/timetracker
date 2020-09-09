@@ -29,8 +29,17 @@ export class DashboardComponent implements OnInit {
         this.user = user;
         console.log(this.user);
       });
+     // this.createGoogleUsers();
   }
 
+  createGoogleUsers(){
+    this.auth.getRedirectResult().then((result)=>{
+      if(result.credential){
+        console.log(result.credential);
+      }
+      console.log(result.user);
+    })
+  }
   toggleExpansion(){
     this.expanded = !this.expanded;
   }

@@ -5,13 +5,16 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs'
 import { Validators} from '@angular/forms'
 import {FormBuilder} from '@angular/forms'
+import { IError } from './error';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['../sign-up/sign-up.component.scss', './sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  err = {
+  localstore : Storage = window.localStorage;
+  isPending : boolean=false;
+  err : IError = {
     isError:false,
     errorMessage:''
   }
@@ -29,7 +32,15 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     // Checks if user is authenticated by continuously checking, especially for the case of using Google sign in
-    this.auth.user.subscribe((user) => this.router.navigate(['dashboard']))
+    console.log(this.localstore.getItem('authStatus'));
+    this.isPending = !(this.localstore.getItem('authStatus') == null);
+    this.auth.user.subscribe((user) => {
+      
+      this.createGoogleUsers();
+      this.localstore.removeItem('authStatus');
+      this.router.navigate(['dashboard'])
+      
+    })
   }
 
   get email(){return this.signOnForm.get('email')}
@@ -61,13 +72,23 @@ export class SignInComponent implements OnInit {
   }
 
   loginWithGoogle() :void {
-    // TODO: Doesn't do anything on its own except log for errors because it takes user off our site
-    // TODO: Maybe use localStorage to show that they're loading?
+    //localStorage, store auth as pending
+    this.localstore.setItem('authStatus','pending');
     this.auth.signInWithRedirect(new auth.GoogleAuthProvider());
-    //   .then((result)=>{
-    //     console.log(result);
-    //   }).catch((err)=>{
-    //   console.log(err);
-    // })
+   
+  }
+
+  createGoogleUsers(){
+    from(this.auth.getRedirectResult()).subscribe(
+      (result)=>{
+        
+        if(result.credential){
+          console.log(result.credential);
+        }
+        console.log(result.user);
+      },
+      (err)=>{
+        //TODO: error handling
+      })
   }
 }

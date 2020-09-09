@@ -1,5 +1,9 @@
 // Additional styles added on top of sign up stylesheet
 div.auth-flow {
+  .progress{
+    margin-bottom: 10px;
+    
+  }
   div.third-party-container {
     display: flex;
     justify-content: center;

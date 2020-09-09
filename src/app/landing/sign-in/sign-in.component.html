@@ -1,4 +1,8 @@
 <div class="auth-flow">
+  <div *ngIf='isPending'>
+    <mat-progress-bar mode="indeterminate" class ='progress' color='#73BCFF'></mat-progress-bar>
+  </div>
+  
   <h1>Sign In</h1>
   <div class="third-party-container">
     <button (click)="loginWithGoogle()">

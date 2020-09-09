@@ -36,6 +36,7 @@ deploy-functions:
 
 e2e:
   stage: test
+  image: cypress/browsers:node12.4.0-chrome76
   script:
     - npm install
     - npm run e2e

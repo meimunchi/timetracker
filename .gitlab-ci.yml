@@ -4,12 +4,11 @@ stages:
   - test
   - deploy
 
-before_script:
-  - npm i -g firebase-tools
-  - npm i -g @angular/cli
-
 deploy-firestore:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
+    - npm i -g @angular/cli
   script:
     - firebase deploy --only firestore --token $FIREBASE_TOKEN
   only:
@@ -21,6 +20,9 @@ deploy-firestore:
 
 deploy-functions:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
+    - npm i -g @angular/cli
   script:
     - cd functions
     - npm install
@@ -47,6 +49,9 @@ e2e:
 
 prod-hosting:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
+    - npm i -g @angular/cli
   script:
     - npm install
     - npm run-script build

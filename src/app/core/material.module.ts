@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 
+// TODO: Check cache for gitlab.yml file
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatExpansionModule,
-    
+
   ],
   exports: [
     CommonModule,
@@ -47,7 +48,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatExpansionModule,
-    
+
   ],
 })
 export class CustomMaterialModule { }

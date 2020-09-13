@@ -17,6 +17,7 @@
   <app-calendar-day
     *ngFor="let timeArr of timeArrs; index as i"
     [timeArr]="timeArr"
+    [dayIndex]="i"
     (setTimeArr)="setTimeArrs($event, i)"
   ></app-calendar-day>
 </div>

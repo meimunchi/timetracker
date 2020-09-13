@@ -15,15 +15,16 @@
     <div class="alert" *ngIf="err.isError">
         *{{err.errorMessage}}
     </div>
-    <div class="input-container" [ngClass]="{
-      'err': email.invalid && (email.dirty || email.touched)
-    }">
+    <div
+      class="input-container"
+      [ngClass]="{ 'err': email.invalid && (email.dirty || email.touched) }"
+    >
       <img
         src="assets/icons/mail-24px.svg"
         alt="Mail Icon"
       >
       <label>
-        <input placeholder="Email Address" formControlName='email' name="email" required>
+        <input placeholder="Email Address" formControlName='email' name="email" data-test-id="email-input" required>
       </label>
     </div>
 
@@ -40,7 +41,7 @@
         alt="Lock Icon"
       >
       <label>
-        <input placeholder="Password" formControlName="password" type="password" name="password" required>
+        <input placeholder="Password" formControlName="password" type="password" name="password" data-test-id="password-input" required>
       </label>
     </div>
 
@@ -49,7 +50,7 @@
       *required
     </div>
 
-    <button (click)="login()">
+    <button data-test-id='login-button' (click)="login()">
       Sign In
       <img
         src="assets/icons/chevron_right-52px.svg"

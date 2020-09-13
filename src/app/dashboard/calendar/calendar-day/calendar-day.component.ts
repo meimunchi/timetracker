@@ -8,6 +8,7 @@ import { SelectOption } from './select-option'
 })
 export class CalendarDayComponent implements OnInit {
   @Input() timeArr: number[];
+  @Input() dayIndex: number;
   @Output() setTimeArr = new EventEmitter<number[]>();
   selectOption: SelectOption | null = null;
 

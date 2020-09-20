@@ -24,8 +24,7 @@ export class UserService implements OnInit{
     .pipe(map(snap => {
       const email = snap.payload.id
       const data = snap.payload.data()
-
-      return {email: email, ...data}
+      return data == undefined ? null : {email: email, ...data}
     }))
   }
 

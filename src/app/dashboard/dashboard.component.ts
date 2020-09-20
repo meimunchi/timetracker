@@ -24,22 +24,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO: Must account for creating user who signed in with Google
+    console.log(auth().currentUser.providerData)
     this.user$ = this.userService.getUser(auth().currentUser.providerData[0].email);
     this.user$.subscribe((user) => {
         this.user = user;
         console.log(this.user);
       });
-     // this.createGoogleUsers();
+     
   }
 
-  createGoogleUsers(){
-    this.auth.getRedirectResult().then((result)=>{
-      if(result.credential){
-        console.log(result.credential);
-      }
-      console.log(result.user);
-    })
-  }
+ 
   toggleExpansion(){
     this.expanded = !this.expanded;
   }

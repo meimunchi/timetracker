@@ -6,6 +6,8 @@ import { from } from 'rxjs'
 import { Validators} from '@angular/forms'
 import {FormBuilder} from '@angular/forms'
 import { IError } from './error';
+import { UserService } from 'src/app/shared/user/user.service';
+import { IUser } from 'src/app/shared/user/user.interface';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -27,19 +29,19 @@ export class SignInComponent implements OnInit {
   constructor(
     public auth: AngularFireAuth,
     private router: Router,
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private userservice : UserService
   ) { }
 
   ngOnInit(): void {
     // Checks if user is authenticated by continuously checking, especially for the case of using Google sign in
-    console.log(this.localstore.getItem('authStatus'));
+    //console.log(this.localstore.getItem('authStatus'));
     this.isPending = !(this.localstore.getItem('authStatus') == null);
-    this.auth.user.subscribe((user) => {
-      
-      this.createGoogleUsers();
-      this.localstore.removeItem('authStatus');
-      this.router.navigate(['dashboard'])
-      
+    this.auth.user.subscribe((user) => { 
+     // console.log("FIRST USER," ,user);
+
+      this.validateGoogleUsers();
+      this.checkUserExists(user.displayName,user.email);
     })
   }
 
@@ -78,17 +80,62 @@ export class SignInComponent implements OnInit {
    
   }
 
-  createGoogleUsers(){
+  validateGoogleUsers(){
     from(this.auth.getRedirectResult()).subscribe(
       (result)=>{
         
         if(result.credential){
           console.log(result.credential);
         }
-        console.log(result.user);
+    
       },
       (err)=>{
         //TODO: error handling
+        console.log("ERROR")
+        if(err.code === 'auth/account-exists-with-different-credential'){
+          console.log("an acct already exists", err);
+        }
       })
   }
+
+  checkUserExists(name:string,email:string){
+    //check if user exists
+          
+    this.userservice.getUser(email).subscribe((user)=>{
+      if(user == null){
+        //how to tell if they have a middle name? etc....
+        const splitname = name.split(" ");
+        console.log(splitname);
+        const newUser : IUser= {
+        email: email,
+        firstName: splitname[0],
+        lastName:splitname[1],
+        mainCalendar: {
+          Sunday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          Monday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          Tuesday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          Wednesday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          Thursday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          Friday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          Saturday: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        } 
+      }
+      from(this.userservice.createUser(newUser)).subscribe((evt)=>{
+        this.localstore.removeItem('authStatus');
+        this.router.navigate(['dashboard']);
+      })
+      }
+      else{
+        this.localstore.removeItem('authStatus');
+        this.router.navigate(['dashboard']);
+      }
+    },
+    (err)=>{
+      
+      //TODO: check error
+     
+  
+    })
+  }
 }
+

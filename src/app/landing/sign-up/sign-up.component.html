@@ -1,10 +1,10 @@
 <div class="auth-flow">
   <h1>Create account</h1>
-  
-  <form [formGroup]='signUpForm'>
+
+  <form [formGroup]='signUpForm' (ngSubmit)="createAccount()">
     <div class="alert" *ngIf="err.isError">
       *{{err.errorMessage}}
-  </div>
+    </div>
     <div class="input-container" [ngClass]="{
       'err': firstName.invalid && (firstName.dirty || firstName.touched)
     }">
@@ -19,11 +19,11 @@
 
    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
     class="alert">
-    
+
       *required
-   
+
   </div>
-  
+
 
     <div class="input-container" [ngClass]="{
       'err': lastName.invalid && (lastName.dirty || lastName.touched)
@@ -39,9 +39,9 @@
 
      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
     class="alert ">
-    
+
       *required
-    
+
   </div>
 
 
@@ -59,9 +59,9 @@
 
   <div *ngIf="email.invalid && (email.dirty || email.touched)"
     class="alert ">
-    
+
       *required.
-    
+
   </div>
 
     <div class="input-container" [ngClass]="{
@@ -75,7 +75,7 @@
         <input placeholder="Password" formControlName="password" type="password" name="password" required>
       </label>
     </div>
-    
+
     <div *ngIf="password.invalid && (password.dirty || password.touched)"
     class="alert">
       *{{passwordErrors}}
@@ -97,7 +97,7 @@
       *your passwords do not match
     </div>
 
-    <button type ="submit" (click)="createAccount()" [disabled]="!signUpForm.valid">
+    <button type ="submit" [disabled]="!signUpForm.valid">
       Create Account
       <img
         src="assets/icons/chevron_right-52px.svg"

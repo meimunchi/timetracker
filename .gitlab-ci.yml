@@ -1,11 +1,14 @@
 image: node:12.13.0-alpine
 
-before_script:
-  - npm i -g firebase-tools
-  - npm i -g @angular/cli
+stages:
+  - test
+  - deploy
 
 deploy-firestore:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
+    - npm i -g @angular/cli
   script:
     - firebase deploy --only firestore --token $FIREBASE_TOKEN
   only:
@@ -17,6 +20,9 @@ deploy-firestore:
 
 deploy-functions:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
+    - npm i -g @angular/cli
   script:
     - cd functions
     - npm install
@@ -28,8 +34,21 @@ deploy-functions:
     changes:
       - functions/**/*
 
+e2e:
+  stage: test
+  image: cypress/browsers:node12.4.0-chrome76
+  script:
+    - npm install
+    - npm run e2e
+  only:
+    - master
+    - dev
+
 prod-hosting:
   stage: deploy
+  before_script:
+    - npm i -g firebase-tools
+    - npm i -g @angular/cli
   script:
     - npm install
     - npm run-script build

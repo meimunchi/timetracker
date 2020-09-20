@@ -16,6 +16,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
+// TODO: Check cache for gitlab.yml file
+
 @NgModule({
   imports: [
     CommonModule,
